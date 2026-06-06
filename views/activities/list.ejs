@@ -1,0 +1,36 @@
+<%- include('../layout', { title: '邻里活动', body: `
+<div class="page-header">
+  <h2>🎉 邻里活动</h2>
+  <a href="/activities/create" class="btn btn-primary">发布活动</a>
+</div>
+<div class="activity-list">
+  <% activities.forEach(function(activity) { %>
+  <div class="card">
+    <div class="card-header">
+      <h3><a href="/activities/<%= activity.id %>"><%= activity.title %></a></h3>
+      <span class="badge <%= activity.status === 'open' ? 'badge-success' : activity.status === 'closed' ? 'badge-warning' : 'badge-danger' %>">
+        <%= activity.status === 'open' ? '报名中' : activity.status === 'closed' ? '已满员' : '已取消' %>
+      </span>
+    </div>
+    <div class="card-body">
+      <p><%= activity.description || '暂无描述' %></p>
+      <div class="meta">
+        <span>📍 <%= activity.location %></span>
+        <span>🕐 <%= activity.start_time %> ~ <%= activity.end_time %></span>
+        <span>👥 <%= activity.current_participants %>/<%= activity.max_participants %>人</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <% if (registeredIds.has(activity.id)) { %>
+        <span class="badge badge-info">已报名</span>
+      <% } else if (activity.status === 'open') { %>
+        <a href="/activities/<%= activity.id %>" class="btn btn-sm btn-primary">立即报名</a>
+      <% } %>
+    </div>
+  </div>
+  <% }) %>
+  <% if (activities.length === 0) { %>
+  <div class="empty">暂无活动</div>
+  <% } %>
+</div>
+` }) %>

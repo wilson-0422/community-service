@@ -1,0 +1,36 @@
+<%- include('../layout', { title: '发布活动', body: `
+<div class="page-header">
+  <h2>🎉 发布邻里活动</h2>
+  <a href="/activities" class="btn btn-outline">返回列表</a>
+</div>
+${typeof error !== 'undefined' && error ? '<div class="alert alert-error">' + error + '</div>' : ''}
+<form action="/activities/create" method="POST" class="form-card">
+  <div class="form-group">
+    <label for="title">活动名称 <span class="required">*</span></label>
+    <input type="text" id="title" name="title" required placeholder="请输入活动名称">
+  </div>
+  <div class="form-group">
+    <label for="description">活动描述</label>
+    <textarea id="description" name="description" rows="4" placeholder="请输入活动详情描述"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="location">活动地点 <span class="required">*</span></label>
+    <input type="text" id="location" name="location" required placeholder="请输入活动地点">
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="start_time">开始时间 <span class="required">*</span></label>
+      <input type="datetime-local" id="start_time" name="start_time" required>
+    </div>
+    <div class="form-group">
+      <label for="end_time">结束时间 <span class="required">*</span></label>
+      <input type="datetime-local" id="end_time" name="end_time" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="max_participants">最大参与人数</label>
+    <input type="number" id="max_participants" name="max_participants" value="50" min="1">
+  </div>
+  <button type="submit" class="btn btn-primary">发布活动</button>
+</form>
+` }) %>

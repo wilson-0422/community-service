@@ -1,0 +1,29 @@
+<%- include('../layout', { title: '闲置置换', body: `
+<div class="page-header">
+  <h2>♻️ 社区闲置置换</h2>
+  <a href="/exchanges/create" class="btn btn-primary">发布物品</a>
+</div>
+<div class="exchange-grid">
+  <% items.forEach(function(item) { %>
+  <div class="card exchange-card">
+    <div class="card-header">
+      <h3><a href="/exchanges/<%= item.id %>"><%= item.title %></a></h3>
+      <span class="badge badge-success">可置换</span>
+    </div>
+    <div class="card-body">
+      <p><%= item.description || '暂无描述' %></p>
+      <div class="meta">
+        <span>📂 <%= item.category %></span>
+        <span>✨ <%= item.condition_level === 'new' ? '全新' : item.condition_level === 'good' ? '良好' : '一般' %></span>
+      </div>
+      <div class="meta">
+        <span>👤 <%= item.owner_name %></span>
+      </div>
+    </div>
+  </div>
+  <% }) %>
+  <% if (items.length === 0) { %>
+  <div class="empty">暂无可置换物品</div>
+  <% } %>
+</div>
+` }) %>

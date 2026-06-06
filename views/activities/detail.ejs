@@ -1,0 +1,65 @@
+<%- include('../layout', { title: activity.title, body: `
+<div class="page-header">
+  <h2>🎉 <%= activity.title %></h2>
+  <a href="/activities" class="btn btn-outline">返回列表</a>
+</div>
+<div class="detail-card">
+  <div class="detail-row">
+    <span class="detail-label">活动状态</span>
+    <span class="badge <%= activity.status === 'open' ? 'badge-success' : activity.status === 'closed' ? 'badge-warning' : 'badge-danger' %>">
+      <%= activity.status === 'open' ? '报名中' : activity.status === 'closed' ? '已满员' : '已取消' %>
+    </span>
+  </div>
+  <div class="detail-row">
+    <span class="detail-label">活动地点</span>
+    <span>📍 <%= activity.location %></span>
+  </div>
+  <div class="detail-row">
+    <span class="detail-label">活动时间</span>
+    <span>🕐 <%= activity.start_time %> ~ <%= activity.end_time %></span>
+  </div>
+  <div class="detail-row">
+    <span class="detail-label">报名人数</span>
+    <span>👥 <%= activity.current_participants %>/<%= activity.max_participants %>人</span>
+  </div>
+  <div class="detail-row">
+    <span class="detail-label">活动详情</span>
+    <p><%= activity.description || '暂无描述' %></p>
+  </div>
+  <div class="detail-actions">
+    <% if (isRegistered) { %>
+      <form action="/activities/<%= activity.id %>/cancel" method="POST" style="display:inline">
+        <button type="submit" class="btn btn-warning">取消报名</button>
+      </form>
+    <% } else if (activity.status === 'open') { %>
+      <form action="/activities/<%= activity.id %>/register" method="POST" style="display:inline">
+        <button type="submit" class="btn btn-primary">立即报名</button>
+      </form>
+    <% } %>
+  </div>
+</div>
+<div class="section">
+  <h3>报名列表</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>报名时间</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% registrations.forEach(function(reg, idx) { %>
+      <tr>
+        <td><%= idx + 1 %></td>
+        <td><%= reg.real_name %></td>
+        <td><%= reg.registered_at %></td>
+      </tr>
+      <% }) %>
+      <% if (registrations.length === 0) { %>
+      <tr><td colspan="3" class="empty">暂无报名</td></tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+` }) %>

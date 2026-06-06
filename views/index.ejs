@@ -1,0 +1,29 @@
+<%- include('../layout', { title: '首页', body: `
+<div class="welcome">
+  <h1>🏘️ 欢迎使用社区邻里综合服务平台</h1>
+  <p>为社区居民提供便捷的邻里活动、助餐服务、闲置置换、志愿服务和民情诉求等服务</p>
+  ${typeof error !== 'undefined' && error ? '<div class="alert alert-error">' + error + '</div>' : ''}
+  <div class="quick-links">
+    <a href="/activities" class="card-link">
+      <div class="card-link-icon">🎉</div>
+      <div class="card-link-text">邻里活动</div>
+    </a>
+    <a href="/meals" class="card-link">
+      <div class="card-link-icon">🍽️</div>
+      <div class="card-link-text">老年助餐</div>
+    </a>
+    <a href="/exchanges" class="card-link">
+      <div class="card-link-icon">♻️</div>
+      <div class="card-link-text">闲置置换</div>
+    </a>
+    <a href="/volunteers" class="card-link">
+      <div class="card-link-icon">🤝</div>
+      <div class="card-link-text">志愿服务</div>
+    </a>
+    <a href="/complaints" class="card-link">
+      <div class="card-link-icon">📋</div>
+      <div class="card-link-text">民情诉求</div>
+    </a>
+  </div>
+</div>
+` }) %>

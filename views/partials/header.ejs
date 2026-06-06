@@ -1,0 +1,21 @@
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <a href="/">🏘️ 社区邻里综合服务平台</a>
+    </div>
+    <% if (userId) { %>
+    <nav class="nav">
+      <a href="/" class="<%= typeof activeNav !== 'undefined' && activeNav === 'dashboard' ? 'active' : '' %>">首页</a>
+      <a href="/activities" class="<%= typeof activeNav !== 'undefined' && activeNav === 'activities' ? 'active' : '' %>">邻里活动</a>
+      <a href="/meals" class="<%= typeof activeNav !== 'undefined' && activeNav === 'meals' ? 'active' : '' %>">老年助餐</a>
+      <a href="/exchanges" class="<%= typeof activeNav !== 'undefined' && activeNav === 'exchanges' ? 'active' : '' %>">闲置置换</a>
+      <a href="/volunteers" class="<%= typeof activeNav !== 'undefined' && activeNav === 'volunteers' ? 'active' : '' %>">志愿者排班</a>
+      <a href="/complaints" class="<%= typeof activeNav !== 'undefined' && activeNav === 'complaints' ? 'active' : '' %>">民情诉求</a>
+    </nav>
+    <div class="user-info">
+      <span>👤 <%= realName %></span>
+      <a href="/auth/logout" class="btn btn-sm btn-outline">退出</a>
+    </div>
+    <% } %>
+  </div>
+</header>

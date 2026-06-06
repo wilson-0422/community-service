@@ -1,0 +1,52 @@
+<%- include('../layout', { title: shift.title, body: `
+<div class="page-header">
+  <h2>🤝 <%= shift.title %></h2>
+  <a href="/volunteers" class="btn btn-outline">返回排班</a>
+</div>
+<div class="detail-card">
+  <div class="detail-row">
+    <span class="detail-label">任务描述</span>
+    <p><%= shift.description || '暂无描述' %></p>
+  </div>
+  <div class="detail-row">
+    <span class="detail-label">服务地点</span>
+    <span>📍 <%= shift.location %></span>
+  </div>
+  <div class="detail-row">
+    <span class="detail-label">服务日期</span>
+    <span>📅 <%= shift.shift_date %></span>
+  </div>
+  <div class="detail-row">
+    <span class="detail-label">服务时间</span>
+    <span>🕐 <%= shift.start_time %> ~ <%= shift.end_time %></span>
+  </div>
+  <div class="detail-row">
+    <span class="detail-label">志愿者人数</span>
+    <span>👥 <%= shift.current_volunteers %>/<%= shift.max_volunteers %></span>
+  </div>
+</div>
+<div class="section">
+  <h3>已报名志愿者</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>报名时间</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% signups.forEach(function(signup, idx) { %>
+      <tr>
+        <td><%= idx + 1 %></td>
+        <td><%= signup.real_name %></td>
+        <td><%= signup.signed_up_at %></td>
+      </tr>
+      <% }) %>
+      <% if (signups.length === 0) { %>
+      <tr><td colspan="3" class="empty">暂无报名</td></tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+` }) %>

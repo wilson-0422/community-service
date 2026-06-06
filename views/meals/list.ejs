@@ -1,0 +1,24 @@
+<%- include('../layout', { title: '老年助餐', body: `
+<div class="page-header">
+  <h2>🍽️ 老年助餐服务</h2>
+  <a href="/meals/order" class="btn btn-primary">预约订餐</a>
+</div>
+<div class="meal-menu">
+  <h3>今日菜单</h3>
+  <div class="form-row">
+    <% Object.keys(menuItems).forEach(function(type) { %>
+    <div class="card meal-type-card">
+      <h4><%= type === 'breakfast' ? '🌅 早餐' : type === 'lunch' ? '☀️ 午餐' : '🌙 晚餐' %></h4>
+      <ul class="menu-list">
+        <% menuItems[type].forEach(function(item) { %>
+        <li><%= item %></li>
+        <% }) %>
+      </ul>
+    </div>
+    <% }) %>
+  </div>
+</div>
+<div class="section" style="margin-top: 2rem">
+  <a href="/meals/orders" class="btn btn-outline">查看我的订单</a>
+</div>
+` }) %>

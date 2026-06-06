@@ -1,0 +1,20 @@
+<%- include('../layout', { title: '登录', body: `
+<div class="auth-page">
+  <div class="auth-card">
+    <h2>🔐 用户登录</h2>
+    ${typeof error !== 'undefined' && error ? '<div class="alert alert-error">' + error + '</div>' : ''}
+    <form action="/auth/login" method="POST">
+      <div class="form-group">
+        <label for="username">用户名</label>
+        <input type="text" id="username" name="username" required placeholder="请输入用户名">
+      </div>
+      <div class="form-group">
+        <label for="password">密码</label>
+        <input type="password" id="password" name="password" required placeholder="请输入密码">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">登录</button>
+    </form>
+    <p class="auth-link">还没有账号？<a href="/auth/register">立即注册</a></p>
+  </div>
+</div>
+` }) %>

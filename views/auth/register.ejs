@@ -1,0 +1,36 @@
+<%- include('../layout', { title: '注册', body: `
+<div class="auth-page">
+  <div class="auth-card">
+    <h2>📝 用户注册</h2>
+    ${typeof error !== 'undefined' && error ? '<div class="alert alert-error">' + error + '</div>' : ''}
+    <form action="/auth/register" method="POST">
+      <div class="form-group">
+        <label for="username">用户名</label>
+        <input type="text" id="username" name="username" required placeholder="请输入用户名">
+      </div>
+      <div class="form-group">
+        <label for="real_name">真实姓名</label>
+        <input type="text" id="real_name" name="real_name" required placeholder="请输入真实姓名">
+      </div>
+      <div class="form-group">
+        <label for="password">密码</label>
+        <input type="password" id="password" name="password" required placeholder="请输入密码">
+      </div>
+      <div class="form-group">
+        <label for="confirm_password">确认密码</label>
+        <input type="password" id="confirm_password" name="confirm_password" required placeholder="请再次输入密码">
+      </div>
+      <div class="form-group">
+        <label for="phone">联系电话</label>
+        <input type="text" id="phone" name="phone" placeholder="请输入联系电话">
+      </div>
+      <div class="form-group">
+        <label for="address">住址</label>
+        <input type="text" id="address" name="address" placeholder="请输入住址">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">注册</button>
+    </form>
+    <p class="auth-link">已有账号？<a href="/auth/login">立即登录</a></p>
+  </div>
+</div>
+` }) %>
